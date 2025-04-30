@@ -1,3 +1,4 @@
+#Brute Force (O(n²) time, O(1) space)
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         for i in range(len(nums)):
@@ -6,6 +7,3 @@ class Solution:
                 if(twoSum == target):
                     return [i,j]
         return []
-        
-
-        
