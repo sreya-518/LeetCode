@@ -8,11 +8,7 @@ class Solution:
         while x != 0:
             digit = x % 10
             x = x//10
-
-            if result > (INT_MAX - digit) // 10:
-                return 0
             result = (result*10)+digit
+            if result > INT_MAX:
+                return 0
         return -result if negative else result
-
-
-        
