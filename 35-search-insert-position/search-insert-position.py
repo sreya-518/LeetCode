@@ -12,4 +12,4 @@ class Solution:
             else:
                 low = mid + 1
         return ans
-
+# can also use --> bisect.bisect_left(nums, target)
