@@ -1,55 +1,37 @@
-import bisect
+from typing import List
+
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
-        # i = bisect.bisect_left(nums, target)
-        # j = bisect.bisect_right(nums, target)
-        # if i == j:
-        #     return [-1, -1]
-        # return [i, j-1]
 
-        def firstOccurrence(arr, n, k):
-            low = 0
-            high = n - 1
-            first = -1
-
+        def lowerBound(arr, x):
+            low, high = 0, len(arr) - 1
+            ans = len(arr)
             while low <= high:
                 mid = (low + high) // 2
-                if arr[mid] == k:
-                    first = mid
+                if arr[mid] >= x:
+                    ans = mid
                     high = mid - 1
-                elif arr[mid] < k:
-                    low = mid + 1 
                 else:
-                    high = mid - 1 
-            return first
-
-
-        def lastOccurrence(arr, n, k):
-            low = 0
-            high = n - 1
-            last = -1
-
-            while low <= high:
-                mid = (low + high) // 2
-                if arr[mid] == k:
-                    last = mid
                     low = mid + 1
-                elif arr[mid] < k:
-                    low = mid + 1 
-                else:
+            return ans
+
+        def upperBound(arr, x):
+            low, high = 0, len(arr) - 1
+            ans = len(arr)
+            while low <= high:
+                mid = (low + high) // 2
+                if arr[mid] > x:
+                    ans = mid
                     high = mid - 1
+                else:
+                    low = mid + 1
+            return ans
 
-            return last
+        def firstAndLastPosition(arr, x):
+            first = lowerBound(arr, x)
+            last = upperBound(arr, x)
+            if first == len(arr) or arr[first] != x:
+                return [-1, -1]
+            return [first, last - 1]
 
-        def firstAndLastPosition(nums, n, k):
-            first = firstOccurrence(nums, n, k)
-            if first == -1:
-                return (-1, -1)
-            last = lastOccurrence(nums, n, k)
-            return (first, last)
-            
-        n = len(nums)
-        first, last = firstAndLastPosition(nums, n, target)
-        if first == -1:
-            return [-1, -1]
-        return [first, last]
+        return firstAndLastPosition(nums, target)
