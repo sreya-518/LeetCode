@@ -1,9 +1,16 @@
-#Brute Force (O(n²) time, O(1) space)
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        for i in range(len(nums)):
-            for j in range(i+1, len(nums)):
-                twoSum = nums[i] + nums[j]
-                if(twoSum == target):
-                    return [i,j]
-        return []
+            #Brute Force: Check from i=0 to n-1 and j=i+1 to n.
+            # TC - O(N^2) SC - O(1)
+            # Better Solution: HashMap
+            difference = {}
+            for i in range(len(nums)):
+                diff = target - nums[i]
+                if diff in difference:
+                    return [difference[diff],i]
+                else:
+                    difference[nums[i]] = i 
+
+            
+
+        
