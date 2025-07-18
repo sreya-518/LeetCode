@@ -15,6 +15,7 @@ class Solution:
         # while going only convetr and go
         l = 0
         r = len(s)-1
+        s = s.lower()
         while(l<r):
             while l<r and not s[l].isalnum():
                 l += 1
