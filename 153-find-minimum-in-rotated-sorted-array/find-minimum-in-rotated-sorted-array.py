@@ -1,19 +1,11 @@
-import sys
 class Solution:
     def findMin(self, nums: List[int]) -> int:
-        low = 0
         n = len(nums)
-        high = n - 1
-        ans = sys.maxsize
-        while low <= high:
+        low , high = 0, n-1
+        while(low<high):
             mid = (low+high)//2
-            if nums[low]<=nums[high]:
-                ans = min(ans, nums[low])
-                break
-            if nums[low] <= nums[mid]:
-                ans = min(ans, nums[low])
-                low = mid + 1
+            if nums[mid]<= nums[high]:
+                high = mid
             else:
-                ans = min(ans, nums[mid])
-                high = mid - 1
-        return ans
+                low = mid+1
+        return nums[low]
