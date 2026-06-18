@@ -1,19 +1,17 @@
-#Using Queues
-from collections import deque
+#Using Arrays & Hash => Most Optimal
+from collections import Counter
 class Solution:
     def countStudents(self, students: List[int], sandwiches: List[int]) -> int:
-        queue = deque(students)
-        i = 0 
-        rotations = 0
-        while rotations<len(queue) and queue:
-            if queue[0] == sandwiches[i]:
-                i += 1
-                queue.popleft()
-                rotations = 0
+        cnt = Counter(students)
+        res = len(students)
+        for s in sandwiches:
+            if cnt[s] > 0:
+                res -= 1
+                cnt[s]-=1
             else:
-                queue.append(queue.popleft())
-                rotations += 1
-        return len(queue) 
+                break
+        return res
+
 
 
         
