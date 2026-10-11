@@ -3,13 +3,15 @@ class Solution:
             #Brute Force: Check from i=0 to n-1 and j=i+1 to n.
             # TC - O(N^2) SC - O(1)
             # Better Solution: HashMap
-            difference = {}
-            for i in range(len(nums)):
-                diff = target - nums[i]
-                if diff in difference:
-                    return [difference[diff],i]
-                else:
-                    difference[nums[i]] = i 
+            TwoSumMap = {}
+
+            for i, n in enumerate(nums):
+                diff = target - n
+                if diff in TwoSumMap:
+                    return [TwoSumMap[diff], i]
+                TwoSumMap[n] = i
+
+            
 
             
 
