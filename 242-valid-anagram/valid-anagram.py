@@ -3,14 +3,14 @@ class Solution:
         #Using List
         if len(s) != len(t):
             return False
-        countT, countS = {}, {}
+        count = [0] * 26
 
-        for i in range(len(s)):
-            countS[s[i]] = 1 + countS.get(s[i], 0)
-            countT[t[i]] = 1+ countT.get(t[i], 0)
-        for c in countS:
-            if countS.get(c, 0) != countT.get(c, 0):
+        for c in s:
+            count[ord(c) - ord('a')] += 1
+        for c in t:
+            count[ord(c) - ord('a')] -= 1
+        
+        for i in count:
+            if i!=0:
                 return False
         return True
-            
-
