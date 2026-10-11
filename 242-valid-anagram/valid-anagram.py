@@ -3,20 +3,14 @@ class Solution:
         #Using List
         if len(s) != len(t):
             return False
-        count = [0] * 26
-        # Count occurrence of each character in first string
-        for c in s:
-            count[ord(c) - ord('a')] += 1
+        countT, countS = {}, {}
 
-        # Decrement the count for each character in the second string
-        for c in t:
-            count[ord(c) - ord('a')] -= 1
-
-        # Check for count of every character
-        for i in count:
-            # If the count is not zero
-            if i != 0:
-                return False # Return false
+        for i in range(len(s)):
+            countS[s[i]] = 1 + countS.get(s[i], 0)
+            countT[t[i]] = 1+ countT.get(t[i], 0)
+        for c in countS:
+            if countS.get(c, 0) != countT.get(c, 0):
+                return False
         return True
             
 
